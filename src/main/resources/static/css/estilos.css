@@ -14,6 +14,18 @@
     color: blueviolet;
 }
 
-p{
-  color: brown;  
+a{
+    color:blueviolet;
+}
+
+a:hover{
+    color: white;
+    background-color:black;
+    transition: 0.9s;
+    font-size: 25px;
+}
+
+a:active{
+    color: crimson;
+    background-color: red;
 }
