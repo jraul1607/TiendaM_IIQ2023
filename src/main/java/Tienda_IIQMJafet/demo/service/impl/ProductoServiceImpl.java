@@ -1,5 +1,5 @@
-
 package Tienda_IIQMJafet.demo.service.impl;
+
 import Tienda_IIQMJafet.demo.dao.ProductoDao;
 import Tienda_IIQMJafet.demo.domain.Producto;
 import Tienda_IIQMJafet.demo.service.ProductoService;
@@ -9,23 +9,23 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class ProductoServiceImpl implements ProductoService{
-    
+public class ProductoServiceImpl implements ProductoService {
+
     @Autowired
     private ProductoDao productoDao;
- 
+
     @Override
-    @Transactional(readOnly=true)
+    @Transactional(readOnly = true)
     public List<Producto> getProductos(boolean activos) {
-      List<Producto> lista = productoDao.findAll();
-      
-      if (activos) {
-          lista.removeIf(x -> !x.isActivo());
-      }
-      
-      return lista;
+        List<Producto> lista = productoDao.findAll();
+
+        if (activos) {
+            lista.removeIf(x -> !x.isActivo());
+        }
+
+        return lista;
     }
-    
+
     @Override
     @Transactional(readOnly = true)
     public Producto getProducto(Producto producto) {
@@ -44,6 +44,22 @@ public class ProductoServiceImpl implements ProductoService{
         productoDao.delete(producto);
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public List<Producto> findByPrecioBetweenOrderByDescripcion(double precioInf, double precioSup) {
+        return productoDao.findByPrecioBetweenOrderByDescripcion(precioInf, precioSup);
+    }
     
+    @Override
+    @Transactional(readOnly=true)    
+    public List<Producto> metodoJPQL(double precioInf, double precioSup) {
+        return productoDao.metodoJPQL(precioInf, precioSup);
+    }
     
+    @Override
+    @Transactional(readOnly=true)    
+    public List<Producto> metodoNativo(double precioInf, double precioSup) {
+        return productoDao.metodoNativo(precioInf, precioSup);
+    }
+
 }
