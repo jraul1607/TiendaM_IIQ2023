@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import jakarta.servlet.http.HttpSession;
 
 
 @Controller
@@ -24,8 +25,11 @@ public class CategoriaController {
     
     @GetMapping("/listado")
     public String inicio(Model model) {
-        List<Categoria> categorias = categoriaService.getPorCategoria("Teclados");
-        //List<Categoria> categorias = categoriaService.getCategorias(false);
+    public String inicio(Model model, HttpSession session) {
+        log.info("Consumiendo el recurso /categoria/listado");
+        List<Categoria> categorias = categoriaService.getCategorias(false);
+        String imagen = (String)session.getAttribute("usuarioImagen");
+        model.addAttribute("avatar", imagen);
         model.addAttribute("categorias", categorias);
         model.addAttribute("totalCategorias", categorias.size());
         return "/categoria/listado";
