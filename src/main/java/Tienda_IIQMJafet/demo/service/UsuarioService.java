@@ -1,10 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package Tienda_IIQMJafet.demo.service;
 
-import com.Tienda.domain.Usuario;
+import Tienda_IIQMJafet.demo.domain.Usuario;
 import java.util.List;
 
 public interface UsuarioService {
@@ -29,9 +25,10 @@ public interface UsuarioService {
 
     // Se inserta un nuevo usuario si el id del usuario esta vacío
     // Se actualiza un usuario si el id del usuario NO esta vacío
-    public void save(Usuario usuario,boolean crearRolUser);
+    public void save(Usuario usuario, boolean crearRolUser);
 
     // Se elimina el usuario que tiene el id pasado por parámetro
     public void delete(Usuario usuario);
 
 }
+
